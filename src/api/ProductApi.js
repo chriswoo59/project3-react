@@ -1,5 +1,5 @@
 
-const URI = "http://localhost:8080/api/product"
+const URI = "http://localhost:8080/api/user"
 
 const ProductApi = {
 
