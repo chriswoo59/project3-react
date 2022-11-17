@@ -1,9 +1,9 @@
 
 const URI = "http://localhost:8080/api/user"
 
-const ProductApi = {
+const UserApi = {
 
-        getProducts: (setProducts) => {
+        getUser: (setUsers) => {
                 
 
             // fetch( URI ) => retrieving the data
@@ -23,7 +23,7 @@ const ProductApi = {
 
                     // call the setProducts functoin from our state and put in the data from
                     // our API call
-                    setProducts(data)
+                    setUsers(data)
                 } )
                 .catch( (error) => { console.log(error) } ) // if fails go here (400/500 response)
 
@@ -31,19 +31,27 @@ const ProductApi = {
         },
 
 
-        createProduct: (product, setProdId) => {
+        createUser: (user, setUserId) => {
 
             fetch( URI, {
                 method: "POST",
-                header: { "Content-Type": "application/json" }, // pass token in header
-                body: JSON.stringify(product) // convert object to json string
+                    
+                    headers: {
+                        'Accept': 'application/json',   
+                        'Content-Type': 'application/json',
+                        credentials: 'include'
+
+            },
+
+                
+                body: JSON.stringify(user) // convert object to json string
             } )
                 .then( result => result.json() )
                 .then( data => {
                     console.log("PRODUCT CREATED")
                     console.log(data)           // data -> product created
 
-                    setProdId( data.id )
+                    setUserId( data.id )
                 } )
                 .catch( (error) => { console.log(error) } )
 
@@ -52,6 +60,6 @@ const ProductApi = {
 }
 
 // allows you to use this object outside of this file
-export default ProductApi;
+export default UserApi;
 
 

@@ -11,12 +11,17 @@ import React from "react";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import {
-
   Route,
   Navigate, 
   Routes
 } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
+
+import CreateUserForm from './CreateUserForm';
+
+
+
+
 
 
 function App() {
@@ -34,18 +39,34 @@ function App() {
 
                 <Route path="/" element= {<Navigate exact from="/" to="/dashboard" />} exact />
 
+                <Route path= "/Login" element={<Login/>} />
+
+                <Route path= "/CreateUserForm" element={<CreateUserForm/>} />
+
+                <Route path="/dashboard" element={<Dashboard/>} />
+
+                <Route path="/home" element={ <Home/> } exact />
+                
+                <Route path="/view" element={ <BurgerToppingsTable/> } />
+                
+                <Route path="/view2" element={ <PizzaToppingsTable/> } />
+                
+                <Route path="/complete" element={ <CompleteBurgerOrder/> } />
+
                 {/* <Route path="*" element= {<Navigate from="/" to="/Login" />} /> */}
 
                 
               </Routes>
 
-            {/* <Route path="/Login" element={<Login />} exact /> */}
+            
                 {/* <ProtectedRoute path="/dashboard" element={<Dashboard/>} />
                 <ProtectedRoute path="/home" element={ <Home/> } exact />
                 <ProtectedRoute path="/view" element={ <BurgerToppingsTable/> } />
                 <ProtectedRoute path="/view2" element={ <PizzaToppingsTable/> } />
                 <ProtectedRoute path="/complete" element={ <CompleteBurgerOrder/> } /> */}
       </div>
+
+
   );
 }
 
