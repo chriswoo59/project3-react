@@ -33,10 +33,16 @@ const Dashboard = () => {
    
     if(!token){
         {return <Login setToken={setToken}/>}
-    }
+        
+    } else{
+        { console.log("You are Here");
+        return <Home/>}
+   
+
   return (
      <div className='text-white font-bold text-2xl'>
-    
+   
+       
     <Routes>
 
     <Header/>
@@ -51,5 +57,5 @@ const Dashboard = () => {
      </div>
   )
 }
-
-export default Dashboard
+}
+export default Dashboard;

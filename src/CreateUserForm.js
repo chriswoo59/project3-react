@@ -1,41 +1,71 @@
 import React, { useState } from 'react';
+import UserApi from './api/UserApi';
+import LoginHeader from './LoginHeader';
 
 
 
-function createUserFormModal(props) {
+    const CreateUserForm = () => {
+
+        const [ userName, setUsername ] = useState("");
+        const [ password, setPassword ] = useState("");
+        const [ email, setEmail ] = useState("");
+        const [ showAlert, setShowAlert ] = useState(false);
+        const [ userId, setUserId ] = useState(0);
+    
+        const handleSubmit = (event) => {
+    
+            const user = {
+                "username": userName,
+                "password": password,
+                "email": email
+    
+            }
+    
+            // make the POST request
+            // take te product generated and find the id
+            // set th id for the alert
+    
+            UserApi.createUser(user, setUserId)
+            
+            setShowAlert(true)
+    
+            event.preventDefault();
+    
+        }
+
     return(
-        <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+        
+        <>
 
-                        {/* header has the title at top and x button to close modal */}
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="createUserModalLabel">Create User Form</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                            
-                        <form onSubmit={props.submit} method="GET">
+       
+
+
+        <div>
+
+        <h2>Create User Form Page</h2>
+       
+        <LoginHeader/>
+               
+                        <form onSubmit={handleSubmit} >
                             {/* body contains our form */}
                             <div class="modal-body">
                                 <div className="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" className="form-control" id="username" name="username" required 
-                                            value={props.username} 
-                                            onChange={(event) => props.setUsername(event.target.value)} />
+                                            value={userName} 
+                                            onChange={(event) => setUsername(event.target.value)} /><br></br>
                                 </div>
                                 <div className="form-group">
                                     <label for="password">Password</label>
                                     <input type="text" className="form-control" id="password" name="password" required 
-                                            value={props.password}
-                                            onChange={(event) => props.setPassword(event.target.value)} />
+                                            value={password}
+                                            onChange={(event) => setPassword(event.target.value)} /><br></br>
                                 </div>
                                 <div className="form-group">
                                     <label for="email">Email</label>
                                     <input type="text" className="form-control" id="email" name="email" required 
-                                            value={props.email}
-                                            onChange={(event) => props.setEmail(event.target.value)} />
+                                            value={email}
+                                            onChange={(event) => setEmail(event.target.value)} /><br></br>
                                 </div>
                                 {/* <div className="form-group">
                                     <label for="dob">Dob</label>
@@ -48,71 +78,25 @@ function createUserFormModal(props) {
 
                             {/* footer has the save button */}
                             <div class="modal-footer">
-                                <input type="submit" class="btn btn-primary" value="Save"/>
+                                <input type="submit" class="btn btn-primary" value="Register"/><br></br>
                             </div>
                         </form>
 
-                    </div>
-                </div>
-            </div>
-    );
-}
+                        { 
+                        showAlert
+                        &&
+                        <div class="alert alert-warning" role="alert">
+                            Product was Created with id = {userId}
+                        </div>
+                        }
 
-function CreateUserCrud(props) {
-
-    const [userList, setUserList] = useState( getUserList() );
-    const [currUsername, setCurrUsername] = useState("");
-    const [currPassword, setCurrPassword] = useState("");
-    const [currEmail, setCurrEmail] = useState("");
-    //const [currDob, setCurrDob] = useState(0);
-
-    const closeModal = (event) => {
-        
-        
-
-    };
-
-    const submit = (event) => {
-
-        // add new item to list
-        productList.push({
-            username: currUsername,
-            password: currPassword,
-            email: currEmail,
-           // dob: currDob
-        });
-
-        // clear form
-        setCurrUsername("");
-        setCurrPassword("");
-        setCurrEmail("");
-        //setCurrDob(0);
-
-        // close modal
-        closeModal();
-        
-        // prevent reload of page
-        event.preventDefault();
-
-    };
-
-    return (
-         <div className="container">
-               {/* <h3>Product List</h3>
-               <br/><br/>
-
-               <ProductTable productList={productList}/> */}
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal">
-                Register User
-            </button>
-
-            <createUserFormModal username={currUsername} password={currPassword} email={currEmail}
-                            setUsername={setCurrUsername} setPassword={setCurrPassword} setEmail={setCurrEmail}
-                            submit={submit} />
-        </div>
+         
+    </div>
+    </>       
     );
 }
 
 
-export default CreateUserCrud;
+    
+
+export default CreateUserForm;
