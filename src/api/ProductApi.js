@@ -1,3 +1,5 @@
+import getToken from "../getToken";
+import useToken from "../useToken";
 
 const URI1 = "http://localhost:8080/api/food/burgers";
 const URI2 = "http://localhost:8080/api/food/pizzas";
@@ -67,8 +69,8 @@ const ProductApi = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" ,
                 'Accept': 'application/json',   
-                'Content-Type': 'application/json',
-                credentials: 'include'
+                credentials: 'include',
+                Authorization: "Bearer " + useToken
             
             }, // pass token in header
                 body: JSON.stringify(product) // convert object to json string
@@ -91,8 +93,8 @@ const ProductApi = {
                 method: "POST",
                 header: { "Content-Type": "application/json", 
                             'Accept': 'application/json',   
-                            'Content-Type': 'application/json',
-                            credentials: 'include'
+                            credentials: 'include',
+                            Authorization: "Bearer " + useToken
             
             }, // pass token in header
                 body: JSON.stringify(product) // convert object to json string
