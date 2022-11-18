@@ -39,10 +39,7 @@ const Login = ({setToken}) => {
            
         })
         console.log(token);
-        if ( token == 'token' ) {
-            return  <Navigate to= "/components/Home" />
-        
-           }
+        setToken(token)
            
     }
 
