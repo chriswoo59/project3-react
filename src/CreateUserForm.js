@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import UserApi from './api/UserApi';
-import LoginHeader from './LoginHeader';
+
 
 
 
@@ -44,7 +44,7 @@ import LoginHeader from './LoginHeader';
 
         <h2>Create User Form Page</h2>
        
-        <LoginHeader/>
+     
                
                         <form onSubmit={handleSubmit} >
                             {/* body contains our form */}
@@ -86,7 +86,7 @@ import LoginHeader from './LoginHeader';
                         showAlert
                         &&
                         <div class="alert alert-warning" role="alert">
-                            Product was Created with id = {userId}
+                            User was Created with id = {userId}
                         </div>
                         }
 

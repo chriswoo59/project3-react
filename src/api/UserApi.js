@@ -1,5 +1,5 @@
 
-const URI = "http://localhost:8080/api/user"
+const URI = "http://localhost:8080/api/users"
 
 const UserApi = {
 
@@ -39,7 +39,8 @@ const UserApi = {
                     headers: {
                         'Accept': 'application/json',   
                         'Content-Type': 'application/json',
-                        credentials: 'include'
+                        credentials: 'include',
+                        mode: "no-cors"
 
             },
 
