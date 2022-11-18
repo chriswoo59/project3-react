@@ -15,9 +15,11 @@ import {
   Navigate, 
   Routes
 } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute";
-
+import ProtectedRoute from "./useHooks/ProtectedRoute";
 import CreateUserForm from './CreateUserForm';
+import BurgerForm from './components/BurgerForm';
+import PizzaForm from './components/PizzaForm';
+
 
 
 
@@ -25,27 +27,24 @@ import CreateUserForm from './CreateUserForm';
 
 
 function App() {
+
   return (
             
 
     <div className="container">
-        
+        <Header />
         <div style= {{height: "20px"  }} ></div>
 
              
               <Routes>
 
-                <Route path="/dashboard" element={<Dashboard/>} exact />
+                  <Route path="/" element= {<Navigate exact from="/" to="/Login" />} exact />
 
-                <Route path="/" element= {<Navigate exact from="/" to="/dashboard" />} exact />
+                  <Route path= "/CreateUserForm" element={<CreateUserForm/>} />
 
-                <Route path= "/Login" element={<Login/>} />
+                  <Route path= "/Login" element={<Login/>} />
 
-                <Route path= "/CreateUserForm" element={<CreateUserForm/>} />
-
-                <Route path="/dashboard" element={<Dashboard/>} />
-
-                <Route path="/home" element={ <Home/> } exact />
+                <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>} exact />
                 
                 <Route path="/view" element={ <BurgerToppingsTable/> } />
                 
@@ -53,14 +52,21 @@ function App() {
                 
                 <Route path="/complete" element={ <CompleteBurgerOrder/> } />
 
+                <Route path="/components/Home" element={ <Home/> } exact />
+
+                <Route path="/components/BurgerForm" element={ <BurgerForm/> } exact />
+
+                <Route path="/components/PizzaForm" element={ <PizzaForm/> } exact />
+
                 {/* <Route path="*" element= {<Navigate from="/" to="/Login" />} /> */}
 
                 
+
               </Routes>
 
             
                 {/* <ProtectedRoute path="/dashboard" element={<Dashboard/>} />
-                <ProtectedRoute path="/home" element={ <Home/> } exact />
+                
                 <ProtectedRoute path="/view" element={ <BurgerToppingsTable/> } />
                 <ProtectedRoute path="/view2" element={ <PizzaToppingsTable/> } />
                 <ProtectedRoute path="/complete" element={ <CompleteBurgerOrder/> } /> */}
@@ -68,6 +74,8 @@ function App() {
 
 
   );
+              
+
 }
 
 export default App;

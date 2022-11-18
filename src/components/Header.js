@@ -9,7 +9,7 @@ const Header = () => {
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
 
-                    <Link className="navbar-brand" to="/home" >Home</Link>
+                    <Link className="navbar-brand" to="/Login" >Login</Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -24,7 +24,15 @@ const Header = () => {
 
                         <Link className="nav-link" to="/view">View Burger Toppings</Link>
 
+                        <Link className="nav-link" to="/components/BurgerForm">BurgerForm</Link>
+
+                        <Link className="nav-link" to="/components/PizzaForm">PizzaForm</Link>
+
                         <Link className="nav-link" to="/dashboard">Dashboard</Link>
+
+                        <Link className="navbar-brand" to="/components/Home" >Home</Link>
+
+                        <Link className='nav-link' to="/CreateUserForm">Register</Link>
 
                     </div>
                     </div>

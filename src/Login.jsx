@@ -3,9 +3,13 @@ import { Navigate } from "react-router-dom";
 import "./Login.css";
 import Dashboard from "./Dashboard";
 import PropTypes from 'prop-types';
-import LoginHeader from './LoginHeader';
+import Home from './components/Home';
+
+import setToken from './SetToken';
 
 const URI = "http://localhost:8080/authenticate";
+
+
 
 
 async function LoginUser(credentials) {
@@ -18,11 +22,14 @@ async function LoginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     }).then(data => data.json())
+
+    
 }
 
 const Login = ({setToken}) => {
-    const [userName, setUserName] = useState()
-    const [password, setPassword] = useState()
+    const [userName, setUserName] = useState(" ")
+    const [password, setPassword] = useState(" ")
+  
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -32,13 +39,20 @@ const Login = ({setToken}) => {
            
         })
         console.log(token);
-        setToken(token)
-       
+        if ( token == 'token' ) {
+            return  <Navigate to= "/components/Home" />
         
+           }
+           
     }
+
+     
+
   return (
+    
+
     <>
-    <LoginHeader/>
+    
     
     <div className='bg-black/50 fixed top-0 left-0 w-full h-screen'></div>
     {/* <div className='fixed w-full px-4 py-24 z-50'>
@@ -74,7 +88,6 @@ Login.propTypes = {
 }
 
 export default Login
-
 
         // post()
         // {

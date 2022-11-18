@@ -9,23 +9,15 @@ import PizzaToppingsTable from './components/PizzaToppingComponents/PizzaTopping
 import CompleteBurgerOrder from './components/CompleteOrder';
 import Login from './Login';
 import useToken from './useToken';
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./useHooks/ProtectedRoute";
 
-function setToken(userToken) {
 
-    sessionStorage.setItem('token', JSON.stringify(userToken))
 
-}
+
+
  
 
-function getToken() {
 
-    const tokenString = sessionStorage.getItem('token')
-    const userToken = JSON.parse(tokenString)
-    return userToken?.token
-
-
-} 
 
 const Dashboard = () => {
    //const token = getToken()
@@ -34,28 +26,15 @@ const Dashboard = () => {
     if(!token){
         {return <Login setToken={setToken}/>}
         
-    } else{
-        { console.log("You are Here");
-        return <Home/>}
+    
    
 
   return (
      <div className='text-white font-bold text-2xl'>
-   
-       
-    <Routes>
-
-    <Header/>
-                
-                <ProtectedRoute path="/home" element={ <Home/> } exact />
-                <ProtectedRoute path="/view" element={ <BurgerToppingsTable/> } />
-                <ProtectedRoute path="/view2" element={ <PizzaToppingsTable/> } />
-                <ProtectedRoute path="/complete" element={ <CompleteBurgerOrder/> } />
-
-    </Routes>
 
      </div>
   )
 }
 }
+
 export default Dashboard;

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-//import ProductApi from '../../api/ProductApi';
+
+import Header from '../Header';
+import ProductApi from '../../api/ProductApi';
+
 
 
 const productDummyList = 
@@ -30,12 +33,23 @@ const productDummyList =
 
 const ProductsTable = () => {
 
+    <Header />
+    const[ products, setProducts ] = useState([])
 
-    const tableData = productDummyList.map( p =>
+    //useEffect( function, [] ) => function gets excuted when component gets mounted
+    useEffect( () => {
+        console.log("Hello this component was mounted")
+
+            ProductApi.getBurgers(setProducts)
+
+    }, [] )
+
+   
+    const tableData = products.map( p =>
                                                 <tr key={p.id}>
                                                     <td>{p.id}</td>
                                                     <td>{p.name}</td>
-                                                    <td>{p.price}</td>
+                                                    <td>{p.cost}</td>
                                                     
                                                 <td>
                                                     <button type="submit" className='btn btn-primary'>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import Header from './Header';
 
 
 
@@ -17,8 +17,13 @@ const tableData = ( p =>
     )
 
 return (
+
+    <>
+
+   
+
 <div>
-    <h2>Complete Order</h2>
+    <h2>Completed Order</h2>
 
         <table className="table table-striped">
             <thead>
@@ -36,6 +41,8 @@ return (
         </table>
 
 </div>
+
+</>
 );
 };
 
